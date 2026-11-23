@@ -115,7 +115,7 @@ $currentKelas = $isEdit ? ($mahasiswa['kelas'] ?? '') : (count($allowedKelas) ==
                                         </label>
                                     <?php endif; ?>
                                 </div>
-                                <div id="selectedFileName" class="badge bg-primary-lt text-primary mt-1.5 px-2.5 py-1 text-truncate" style="max-width: 320px; display: none;"></div>
+                                <div id="selectedFileName" class="mt-1.5" style="display: none;"></div>
                                 <div class="text-secondary small" style="font-size: 0.78rem;">
                                     Format: <strong>JPG, PNG, atau WebP</strong> &bull; Maksimal <strong>2 MB</strong>.
                                 </div>
@@ -320,6 +320,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (file.size > 2 * 1024 * 1024) {
                     alert('Ukuran file foto maksimal 2 MB.');
                     this.value = '';
+                    if (fileNameDisplay) {
+                        fileNameDisplay.innerHTML = '';
+                        fileNameDisplay.style.display = 'none';
+                    }
                     return;
                 }
                 const reader = new FileReader();
@@ -328,8 +332,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
                 reader.readAsDataURL(file);
                 if (fileNameDisplay) {
-                    fileNameDisplay.innerHTML = '<i class="ti ti-check me-1"></i> Foto baru dipilih: <strong>' + file.name + '</strong>';
-                    fileNameDisplay.style.display = 'inline-block';
+                    fileNameDisplay.innerHTML = '<span class="badge bg-primary-lt text-primary px-2.5 py-1 text-truncate d-inline-flex align-items-center gap-1" style="max-width: 320px;"><i class="ti ti-check"></i> Foto baru dipilih: <strong>' + file.name + '</strong></span>';
+                    fileNameDisplay.style.display = 'block';
                 }
             }
         });
@@ -344,6 +348,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (this.checked) {
                 labelHapus.classList.replace('btn-outline-danger', 'btn-danger');
                 textHapus.textContent = 'Batal Hapus Foto';
+                if (fileNameDisplay) {
+                    fileNameDisplay.innerHTML = '';
+                    fileNameDisplay.style.display = 'none';
+                }
+                if (fotoInput) {
+                    fotoInput.value = '';
+                }
             } else {
                 labelHapus.classList.replace('btn-danger', 'btn-outline-danger');
                 textHapus.textContent = 'Hapus Foto';
