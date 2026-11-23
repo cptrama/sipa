@@ -91,15 +91,15 @@
 
                     <!-- Desktop Table View (d-none d-md-block) -->
                     <div class="d-none d-md-block">
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0">
+                        <div class="table-responsive" style="overflow-x: hidden;">
+                            <table class="table table-hover align-middle mb-0 w-100">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="ps-3 ps-md-4 text-center" style="width: 70px;">Pertemuan</th>
                                         <th scope="col">Judul Tugas</th>
                                         <th scope="col" class="text-center" style="width: 110px;">Status</th>
-                                        <th scope="col" style="width: 190px;">Jendela Pengumpulan</th>
-                                        <th scope="col" class="text-center pe-3 pe-md-4" style="width: 140px;">Aksi</th>
+                                        <th scope="col" style="width: 180px;">Jendela Pengumpulan</th>
+                                        <th scope="col" class="text-center pe-3 pe-md-4" style="width: 180px;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -128,12 +128,12 @@
                                                 </div>
                                             </td>
                                             <td class="text-center pe-3 pe-md-4">
-                                                <div class="d-inline-flex flex-column gap-1.5 align-items-center" style="width: 130px;">
+                                                <div class="d-inline-flex flex-column gap-1.5 align-items-center" style="width: 145px;">
                                                     <a href="/dosen/tugas/<?= e($t['id']) ?>/pengumpulan" class="btn btn-table-action-primary w-100 py-1" title="Lihat daftar pengumpulan">
                                                         <i class="ti ti-users"></i>
                                                         <span>Periksa (<?= (int)$t['total_kumpul'] ?>)</span>
                                                     </a>
-                                                    <div class="d-flex gap-1 w-100">
+                                                    <div class="d-flex gap-1.5 w-100">
                                                         <a href="/dosen/tugas/<?= e($t['id']) ?>/edit" class="btn btn-table-action-secondary flex-fill py-1 px-1.5 text-nowrap" title="Edit Tugas">
                                                             <i class="ti ti-edit"></i>
                                                             <span style="font-size: 0.78rem;">Edit</span>
