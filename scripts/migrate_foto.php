@@ -57,3 +57,36 @@ foreach ($dosenList as $d) {
         echo "✅ Akun Dosen baru ditambahkan: {$d['nim']} ({$d['nama']})" . PHP_EOL;
     }
 }
+
+// Reset & Seed Mahasiswa S5 from mahasiswa.csv
+$csvFile = __DIR__ . '/mahasiswa.csv';
+if (file_exists($csvFile)) {
+    $db->exec("DELETE FROM users WHERE role = 'mahasiswa';");
+    echo "🗑️ Seluruh data mahasiswa lama telah dihapus." . PHP_EOL;
+
+    $handle = fopen($csvFile, 'r');
+    fgetcsv($handle); // skip header
+    $mhsInsertStmt = $db->prepare(
+        "INSERT INTO users (nim, nama, kelas, role, password_hash, foto, wajib_ganti_password) 
+         VALUES (:nim, :nama, :kelas, 'mahasiswa', :hash, NULL, 1)"
+    );
+
+    $mhsCount = 0;
+    while (($row = fgetcsv($handle)) !== false) {
+        if (count($row) < 3) continue;
+        $nim = trim($row[0]);
+        $nama = trim($row[1]);
+        $kelas = strtoupper(trim($row[2]));
+        $hash = password_hash($nim, PASSWORD_BCRYPT);
+
+        $mhsInsertStmt->execute([
+            ':nim'   => $nim,
+            ':nama'  => $nama,
+            ':kelas' => $kelas,
+            ':hash'  => $hash
+        ]);
+        $mhsCount++;
+    }
+    fclose($handle);
+    echo "✅ {$mhsCount} Akun Mahasiswa baru Kelas S5 berhasil di-seed (Password default = NIM)." . PHP_EOL;
+}
