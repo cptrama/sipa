@@ -44,8 +44,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center text-secondary text-uppercase fw-bold py-3" style="width: 55px;">No</th>
-                                    <th scope="col" class="text-center text-secondary text-uppercase fw-bold py-3" style="width: 140px;">NIM</th>
-                                    <th scope="col" class="text-secondary text-uppercase fw-bold py-3 ps-3">Nama Mahasiswa</th>
+                                    <th scope="col" class="text-secondary text-uppercase fw-bold py-3 ps-3" style="min-width: 220px;">Mahasiswa</th>
                                     <?php foreach ($tasks as $t): ?>
                                         <th scope="col" class="text-center py-2.5 px-3" style="min-width: 150px;">
                                             <div class="fw-bold text-primary text-uppercase lh-sm" style="font-size: 0.82rem; letter-spacing: 0.04em;">Pertemuan <?= e($t['pertemuan_nomor']) ?></div>
@@ -72,13 +71,15 @@
                                 ?>
                                     <tr>
                                         <td class="text-center text-secondary small"><?= $idx + 1 ?></td>
-                                        <td class="text-center">
-                                            <code class="text-primary font-monospace"><?= e($mhs['nim']) ?></code>
-                                        </td>
-                                        <td class="ps-3">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <?= render_avatar($mhs, 26) ?>
-                                                <span class="fw-semibold text-body"><?= e($mhs['nama']) ?></span>
+                                        <td class="ps-3 py-2">
+                                            <div class="d-flex flex-column gap-0.5">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <?= render_avatar($mhs, 24) ?>
+                                                    <span class="fw-semibold text-body"><?= e($mhs['nama']) ?></span>
+                                                </div>
+                                                <div style="padding-left: 32px;">
+                                                    <code class="text-primary font-monospace" style="font-size: 0.76rem;"><?= e($mhs['nim']) ?></code>
+                                                </div>
                                             </div>
                                         </td>
                                         <?php foreach ($tasks as $t): 
@@ -115,7 +116,7 @@
                             <?php if (!empty($tasks)): ?>
                                 <tfoot class="border-top bg-body-tertiary">
                                     <tr>
-                                        <td colspan="3" class="text-end py-3 pe-3">
+                                        <td colspan="2" class="text-end py-3 pe-3">
                                             <div class="d-flex align-items-center justify-content-end gap-1.5 fw-bold text-secondary text-uppercase fs-5">
                                                 <i class="ti ti-calculator fs-2 text-primary"></i>
                                                 <span>Rata-Rata Kelas:</span>
