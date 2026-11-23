@@ -48,8 +48,8 @@
                                     <th scope="col" class="text-secondary text-uppercase fw-bold py-3 ps-3">Nama Mahasiswa</th>
                                     <?php foreach ($tasks as $t): ?>
                                         <th scope="col" class="text-center py-2.5 px-3" style="min-width: 150px;">
-                                            <div class="fw-bold text-primary fs-3 lh-sm">Pertemuan <?= e($t['pertemuan_nomor']) ?></div>
-                                            <div class="table-th-subtitle text-secondary fw-normal text-truncate mx-auto mt-0.5" style="max-width: 160px;" title="<?= e($t['judul']) ?>">
+                                            <div class="fw-bold text-primary text-uppercase lh-sm" style="font-size: 0.82rem; letter-spacing: 0.04em;">Pertemuan <?= e($t['pertemuan_nomor']) ?></div>
+                                            <div class="table-th-subtitle text-secondary fw-normal text-truncate mx-auto mt-0.5" style="max-width: 150px; font-size: 0.72rem;" title="<?= e($t['judul']) ?>">
                                                 <?= e($t['judul']) ?>
                                             </div>
                                         </th>
@@ -133,7 +133,7 @@
                                         ?>
                                             <td class="text-center py-3">
                                                 <?php if ($avg !== null): ?>
-                                                    <span class="badge bg-secondary-lt text-body fw-bold px-2.5 py-1 fs-4">
+                                                    <span class="badge bg-primary-lt text-primary fw-bold px-2.5 py-1 fs-4">
                                                         <?= number_format($avg, 2) ?>
                                                     </span>
                                                 <?php else: ?>
