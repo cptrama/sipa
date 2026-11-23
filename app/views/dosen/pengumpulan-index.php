@@ -161,22 +161,22 @@
                     <style>
                         .table.table-pengumpulan th,
                         .table.table-pengumpulan td {
-                            padding-left: 0.55rem !important;
-                            padding-right: 0.55rem !important;
+                            padding-left: 0.6rem !important;
+                            padding-right: 0.6rem !important;
                         }
                     </style>
                     <div class="table-responsive" style="overflow-x: hidden;">
                         <table class="table table-pengumpulan table-hover align-middle mb-0 w-100">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="text-center" style="width: 110px;">NIM</th>
-                                    <th scope="col">Nama Mahasiswa</th>
-                                    <th scope="col" class="text-center" style="width: 75px;">Status</th>
-                                    <th scope="col" class="text-center" style="width: 95px;">Waktu Upload</th>
-                                    <th scope="col" class="text-center" style="width: 115px;">File Berkas</th>
-                                    <th scope="col" class="text-center" style="width: 65px;">Nilai</th>
-                                    <th scope="col" style="width: 95px;">Feedback</th>
-                                    <th scope="col" class="text-center pe-3" style="width: 90px;">Aksi</th>
+                                    <th scope="col" class="text-center" style="width: 120px;">NIM</th>
+                                    <th scope="col" style="width: 230px;">Nama Mahasiswa</th>
+                                    <th scope="col" class="text-center" style="width: 90px;">Status</th>
+                                    <th scope="col" class="text-center" style="width: 115px;">Waktu Upload</th>
+                                    <th scope="col" class="text-center" style="width: 135px;">File Berkas</th>
+                                    <th scope="col" class="text-center" style="width: 75px;">Nilai</th>
+                                    <th scope="col" style="width: 155px;">Feedback</th>
+                                    <th scope="col" class="text-center pe-3" style="width: 95px;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -190,7 +190,7 @@
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
                                                 <?= render_avatar($sub, 26) ?>
-                                                <div class="fw-bold text-dark text-truncate" style="max-width: 145px;" title="<?= e($sub['nama']) ?>"><?= e($sub['nama']) ?></div>
+                                                <div class="fw-bold text-dark text-truncate" style="max-width: 190px;" title="<?= e($sub['nama']) ?>"><?= e($sub['nama']) ?></div>
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -217,8 +217,8 @@
                                         <td class="text-center">
                                             <?php if (!empty($sub['pengumpulan_id'])): ?>
                                                 <a href="/dosen/pengumpulan/<?= e($sub['pengumpulan_id']) ?>/download" 
-                                                   class="btn btn-table-action-secondary py-1 px-1.5 d-inline-flex align-items-center gap-1 text-truncate" 
-                                                   style="max-width: 110px; font-size: 0.76rem;" 
+                                                   class="btn btn-table-action-secondary py-1 px-2 d-inline-flex align-items-center gap-1 text-truncate" 
+                                                   style="max-width: 125px; font-size: 0.78rem;" 
                                                    title="Unduh <?= e($sub['file_asli']) ?>">
                                                     <i class="ti ti-file-download text-primary flex-shrink-0"></i>
                                                     <span class="text-truncate"><?= e($sub['file_asli']) ?></span>
@@ -243,9 +243,10 @@
                                         </td>
                                         <td>
                                             <?php if (!empty($sub['feedback'])): ?>
-                                                <span class="small text-dark text-truncate d-inline-block" style="max-width: 85px;" title="<?= e($sub['feedback']) ?>">
-                                                    <i class="ti ti-message-dots text-primary me-0.5"></i><?= e($sub['feedback']) ?>
-                                                </span>
+                                                <div class="d-inline-flex align-items-center gap-1.5 small text-dark text-truncate" style="max-width: 145px;" title="<?= e($sub['feedback']) ?>">
+                                                    <i class="ti ti-message-dots text-primary flex-shrink-0"></i>
+                                                    <span class="text-truncate"><?= e($sub['feedback']) ?></span>
+                                                </div>
                                             <?php else: ?>
                                                 <span class="text-secondary small">-</span>
                                             <?php endif; ?>
