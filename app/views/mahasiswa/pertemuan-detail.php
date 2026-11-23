@@ -175,13 +175,17 @@
                             $subIcon = match ($submittedExt) {
                                 'pdf' => 'ti-file-type-pdf text-danger',
                                 'doc', 'docx' => 'ti-file-type-docx text-primary',
-                                'ppt', 'pptx' => 'ti-file-type-pptx text-warning',
+                                'ppt', 'pptx' => 'ti-file-type-ppt text-warning',
+                                'xls', 'xlsx' => 'ti-file-type-xls text-success',
+                                'zip', 'rar', '7z' => 'ti-file-type-zip text-secondary',
                                 default => 'ti-file-text text-primary'
                             };
                             $subBg = match ($submittedExt) {
                                 'pdf' => 'bg-danger-lt',
                                 'doc', 'docx' => 'bg-primary-lt',
                                 'ppt', 'pptx' => 'bg-warning-lt',
+                                'xls', 'xlsx' => 'bg-success-lt',
+                                'zip', 'rar', '7z' => 'bg-secondary-lt',
                                 default => 'bg-primary-lt'
                             };
                         ?>
@@ -193,7 +197,7 @@
                                             <i class="ti ti-circle-check me-1"></i>Tugas Sudah Dikumpulkan
                                         </span>
                                         <?php if ($isGraded): ?>
-                                            <span class="badge bg-success text-white fw-bold px-2.5 py-1 d-inline-flex align-items-center">
+                                            <span class="badge bg-primary text-white fw-bold px-2.5 py-1 d-inline-flex align-items-center">
                                                 <i class="ti ti-award me-1"></i>Nilai: <?= number_format((float)$tugas['nilai'], 1) ?>
                                             </span>
                                         <?php else: ?>
@@ -204,10 +208,10 @@
                                     </div>
                                     
                                     <?php if ($isGraded): ?>
-                                        <div class="text-secondary small d-inline-flex align-items-center gap-1.5" style="font-size: 0.8rem;">
-                                            <i class="ti ti-lock text-warning fs-2"></i>
-                                            <span class="fw-semibold" style="position: relative; top: 0.5px;">Terkunci (Read-Only)</span>
-                                        </div>
+                                        <span class="badge bg-secondary-lt text-secondary px-2.5 py-1 d-inline-flex align-items-center gap-1" style="font-size: 0.78rem;">
+                                            <i class="ti ti-lock text-warning"></i>
+                                            <span>Terkunci (Read-Only)</span>
+                                        </span>
                                     <?php endif; ?>
                                 </div>
 
@@ -215,8 +219,8 @@
                                 <div class="card-body p-3 p-md-4">
                                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
                                         <div class="d-flex align-items-center gap-3 text-truncate" style="min-width: 0;">
-                                            <span class="avatar avatar-md rounded-2 <?= $subBg ?> flex-shrink-0" style="width: 44px; height: 44px;">
-                                                <i class="ti <?= $subIcon ?> fs-1"></i>
+                                            <span class="avatar avatar-md rounded-2 <?= $subBg ?> flex-shrink-0" style="width: 46px; height: 46px; font-size: 1.5rem;">
+                                                <i class="ti <?= $subIcon ?>"></i>
                                             </span>
                                             <div class="text-truncate">
                                                 <div class="fw-bold text-dark text-truncate small mb-1" style="font-size: 0.95rem;">
@@ -243,7 +247,7 @@
 
                                     <!-- Feedback Dosen Section -->
                                     <?php if ($isGraded && !empty($tugas['feedback'])): ?>
-                                        <div class="mt-3 p-3 rounded-3 bg-body-tertiary border text-dark" style="border-left: 3.5px solid #206bc4 !important;">
+                                        <div class="mt-3 p-3 rounded-3 bg-body-tertiary border text-body" style="border-left: 3.5px solid #206bc4 !important;">
                                             <div class="d-flex align-items-center gap-2 text-primary fw-bold small mb-1.5">
                                                 <i class="ti ti-message-dots fs-2"></i>
                                                 <span style="position: relative; top: 0.5px;">Feedback Dosen</span>
