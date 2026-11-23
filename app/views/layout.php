@@ -289,7 +289,10 @@
             $modalBtnText = 'Mengerti';
             $modalTitle = 'Pemberitahuan';
             foreach ($regularFlashes as $rf) {
-                if (stripos($rf['message'], 'akses ditolak') !== false) {
+                if (stripos($rf['message'], 'blokir') !== false) {
+                    $modalTitle = 'Diblokir Sementara';
+                    break;
+                } elseif (stripos($rf['message'], 'akses ditolak') !== false) {
                     $modalTitle = 'Akses Ditolak';
                     break;
                 } elseif (stripos($rf['message'], 'login') !== false || stripos($rf['message'], 'nim') !== false || stripos($rf['message'], 'password') !== false || stripos($rf['message'], 'salah') !== false) {
