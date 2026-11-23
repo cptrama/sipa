@@ -44,7 +44,7 @@
                             <?php foreach ($tugasList as $t): ?>
                                 <div class="mobile-card-item">
                                     <div class="item-header">
-                                        <span class="badge bg-primary">Pertemuan <?= e($t['pertemuan_nomor']) ?></span>
+                                        <span class="badge bg-primary px-2.5 py-1 fw-bold"><?= e($t['pertemuan_nomor']) ?></span>
                                         <?= get_task_status_badge($t['status']) ?>
                                     </div>
 
@@ -71,7 +71,7 @@
                                     <div class="item-action flex-column gap-1.5 mt-2">
                                         <a href="/dosen/tugas/<?= e($t['id']) ?>/pengumpulan" class="btn btn-table-action-primary w-100 text-center py-1.5">
                                             <i class="ti ti-users"></i>
-                                            <span>Submissions (<?= (int)$t['total_kumpul'] ?>)</span>
+                                            <span>Periksa (<?= (int)$t['total_kumpul'] ?>)</span>
                                         </a>
                                         <?php if ((int)$t['total_kumpul'] > 0): ?>
                                             <a href="/dosen/tugas/<?= e($t['id']) ?>/download-zip" class="btn btn-table-action-success w-100 text-center py-1.5" title="Unduh seluruh submission sebagai ZIP">
@@ -101,73 +101,63 @@
                             <table class="table table-hover align-middle mb-0">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="ps-3 ps-md-4" style="width: 140px;">Pertemuan</th>
+                                        <th scope="col" class="ps-3 ps-md-4 text-center" style="width: 70px;">Pertemuan</th>
                                         <th scope="col">Judul Tugas</th>
-                                        <th scope="col" class="text-center" style="width: 120px;">Status</th>
-                                        <th scope="col" style="width: 220px;">Jendela Pengumpulan</th>
-                                        <th scope="col" class="text-center" style="width: 160px;">Pengumpulan</th>
-                                        <th scope="col" class="text-center pe-3 pe-md-4" style="width: 160px;">Aksi</th>
+                                        <th scope="col" class="text-center" style="width: 110px;">Status</th>
+                                        <th scope="col" style="width: 190px;">Jendela Pengumpulan</th>
+                                        <th scope="col" class="text-center pe-3 pe-md-4" style="width: 170px;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($tugasList as $t): ?>
                                         <tr>
-                                            <td class="ps-3 ps-md-4">
-                                                <span class="badge bg-primary">Pertemuan <?= e($t['pertemuan_nomor']) ?></span>
-                                                <div class="small text-secondary mt-1"><?= e($t['pertemuan_topik']) ?></div>
+                                            <td class="ps-3 ps-md-4 text-center">
+                                                <span class="badge bg-primary fs-3 px-2.5 py-1 fw-bold"><?= e($t['pertemuan_nomor']) ?></span>
                                             </td>
                                             <td>
                                                 <strong class="text-dark"><?= e($t['judul']) ?></strong>
+                                                <div class="small text-secondary mt-0.5"><?= e($t['pertemuan_topik']) ?></div>
                                             </td>
                                             <td class="text-center">
                                                 <?= get_task_status_badge($t['status']) ?>
                                             </td>
                                             <td>
-                                                <div class="d-flex flex-column gap-2 small">
-                                                    <div class="d-flex align-items-start gap-1.5">
-                                                        <i class="ti ti-calendar text-primary flex-shrink-0 mt-0.5"></i>
-                                                        <div>
-                                                            <div class="text-secondary">Buka: <strong class="text-dark"><?= format_date((int)$t['dibuka_pada']) ?></strong></div>
-                                                            <div class="text-secondary" style="font-size: 0.78rem;"><?= format_time((int)$t['dibuka_pada']) ?></div>
-                                                        </div>
+                                                <div class="d-flex flex-column gap-1.5 small">
+                                                    <div class="d-flex align-items-center gap-1.5">
+                                                        <i class="ti ti-calendar text-primary flex-shrink-0"></i>
+                                                        <span class="text-secondary">Buka: <strong class="text-dark"><?= format_date((int)$t['dibuka_pada']) ?></strong></span>
                                                     </div>
-                                                    <div class="d-flex align-items-start gap-1.5">
-                                                        <i class="ti ti-calendar-time text-danger flex-shrink-0 mt-0.5"></i>
-                                                        <div>
-                                                            <div class="text-danger fw-semibold">Tutup: <?= format_date((int)$t['ditutup_pada']) ?></div>
-                                                            <div class="text-danger" style="font-size: 0.78rem;"><?= format_time((int)$t['ditutup_pada']) ?></div>
-                                                        </div>
+                                                    <div class="d-flex align-items-center gap-1.5">
+                                                        <i class="ti ti-calendar-time text-danger flex-shrink-0"></i>
+                                                        <span class="text-danger fw-semibold">Tutup: <?= format_date((int)$t['ditutup_pada']) ?></span>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="text-center">
-                                                <a href="/dosen/tugas/<?= e($t['id']) ?>/pengumpulan" class="btn btn-table-action-primary" title="Lihat daftar pengumpulan">
-                                                    <i class="ti ti-users"></i>
-                                                    <span>Submissions</span>
-                                                    <span class="badge bg-primary text-white ms-1"><?= (int)$t['total_kumpul'] ?></span>
-                                                </a>
-                                            </td>
                                             <td class="text-center pe-3 pe-md-4">
-                                                <div class="d-inline-flex flex-column gap-1 align-items-center" style="width: 140px;">
-                                                    <?php if ((int)$t['total_kumpul'] > 0): ?>
-                                                        <a href="/dosen/tugas/<?= e($t['id']) ?>/download-zip" class="btn btn-table-action-success w-100 py-1" title="Unduh seluruh submission sebagai ZIP">
-                                                            <i class="ti ti-file-zip"></i>
-                                                            <span>Unduh ZIP</span>
-                                                        </a>
-                                                    <?php else: ?>
-                                                        <button type="button" class="btn btn-table-action-secondary w-100 py-1 opacity-50" disabled title="Belum ada submission untuk diunduh">
-                                                            <i class="ti ti-file-zip"></i>
-                                                            <span>Unduh ZIP</span>
-                                                        </button>
-                                                    <?php endif; ?>
+                                                <div class="d-inline-flex flex-column gap-1.5 align-items-center" style="width: 160px;">
+                                                    <a href="/dosen/tugas/<?= e($t['id']) ?>/pengumpulan" class="btn btn-table-action-primary w-100 py-1" title="Lihat daftar pengumpulan">
+                                                        <i class="ti ti-users"></i>
+                                                        <span>Periksa (<?= (int)$t['total_kumpul'] ?>)</span>
+                                                    </a>
                                                     <div class="d-flex gap-1 w-100">
-                                                        <a href="/dosen/tugas/<?= e($t['id']) ?>/edit" class="btn btn-table-action-secondary flex-fill py-1 px-1.5" title="Edit Tugas">
+                                                        <?php if ((int)$t['total_kumpul'] > 0): ?>
+                                                            <a href="/dosen/tugas/<?= e($t['id']) ?>/download-zip" class="btn btn-table-action-success flex-fill py-1 px-1 text-nowrap" title="Unduh seluruh submission sebagai ZIP">
+                                                                <i class="ti ti-file-zip"></i>
+                                                                <span style="font-size: 0.74rem;">ZIP</span>
+                                                            </a>
+                                                        <?php else: ?>
+                                                            <button type="button" class="btn btn-table-action-secondary flex-fill py-1 px-1 opacity-50 text-nowrap" disabled title="Belum ada submission untuk diunduh">
+                                                                <i class="ti ti-file-zip"></i>
+                                                                <span style="font-size: 0.74rem;">ZIP</span>
+                                                            </button>
+                                                        <?php endif; ?>
+                                                        <a href="/dosen/tugas/<?= e($t['id']) ?>/edit" class="btn btn-table-action-secondary flex-fill py-1 px-1 text-nowrap" title="Edit Tugas">
                                                             <i class="ti ti-edit"></i>
-                                                            <span style="font-size: 0.76rem;">Edit</span>
+                                                            <span style="font-size: 0.74rem;">Edit</span>
                                                         </a>
-                                                        <button type="button" class="btn btn-table-action-danger flex-fill py-1 px-1.5" data-bs-toggle="modal" data-bs-target="#deleteTugasModal<?= e($t['id']) ?>" title="Hapus Tugas">
+                                                        <button type="button" class="btn btn-table-action-danger flex-fill py-1 px-1 text-nowrap" data-bs-toggle="modal" data-bs-target="#deleteTugasModal<?= e($t['id']) ?>" title="Hapus Tugas">
                                                             <i class="ti ti-trash"></i>
-                                                            <span style="font-size: 0.76rem;">Hapus</span>
+                                                            <span style="font-size: 0.74rem;">Hapus</span>
                                                         </button>
                                                     </div>
                                                 </div>
