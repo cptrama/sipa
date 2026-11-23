@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../app/helpers.php';
 
 $db = get_db();
 $cols = $db->query('PRAGMA table_info(users)')->fetchAll(PDO::FETCH_ASSOC);
@@ -109,4 +110,112 @@ if (file_exists($csvFile)) {
     }
     fclose($handle);
     echo "✅ {$mhsCount} Akun Mahasiswa baru Kelas S5 berhasil di-seed (Password = Nama@123, wajib_ganti_password = 0)." . PHP_EOL;
+}
+
+// Synchronize Pertemuan & PPT Materi Komputasi Awan
+$materiList = [
+    4 => [
+        'topik'   => 'Virtual Machine, Container, dan Jaringan Virtual',
+        'file'    => 'Komputasi Awan - Pertemuan 04.pptx',
+        'tanggal' => '2026-10-12',
+    ],
+    5 => [
+        'topik'   => 'Cloud Security: CIA Triad, Ancaman, dan Kerentanan',
+        'file'    => 'Komputasi Awan - Pertemuan 05.pptx',
+        'tanggal' => '2026-10-19',
+    ],
+    6 => [
+        'topik'   => 'Komunikasi Aman: TLS/SSL, HTTPS, dan Firewall',
+        'file'    => 'Komputasi Awan - Pertemuan 06.pptx',
+        'tanggal' => '2026-10-26',
+    ],
+    7 => [
+        'topik'   => 'Enkripsi, Hashing, dan Key Management',
+        'file'    => 'Komputasi Awan - Pertemuan 07.pptx',
+        'tanggal' => '2026-11-02',
+    ],
+    9 => [
+        'topik'   => 'IAM: Kontrol Akses dan Autentikasi',
+        'file'    => 'Komputasi Awan - Pertemuan 09.pptx',
+        'tanggal' => '2026-11-16',
+    ],
+    10 => [
+        'topik'   => 'Implementasi IAM: Role, Policy, dan MFA',
+        'file'    => 'Komputasi Awan - Pertemuan 10.pptx',
+        'tanggal' => '2026-11-23',
+    ],
+    11 => [
+        'topik'   => 'Sertifikat Digital, CA, dan PKI',
+        'file'    => 'Komputasi Awan - Pertemuan 11.pptx',
+        'tanggal' => '2026-11-30',
+    ],
+    12 => [
+        'topik'   => 'Certificate Lifecycle Management',
+        'file'    => 'Komputasi Awan - Pertemuan 12.pptx',
+        'tanggal' => '2026-12-07',
+    ],
+    13 => [
+        'topik'   => 'Security Policy, Availability, dan Disaster Recovery',
+        'file'    => 'Komputasi Awan - Pertemuan 13.pptx',
+        'tanggal' => '2026-12-14',
+    ],
+    14 => [
+        'topik'   => 'Implementasi Keamanan Cloud Terintegrasi',
+        'file'    => 'Komputasi Awan - Pertemuan 14.pptx',
+        'tanggal' => '2026-12-21',
+    ],
+    15 => [
+        'topik'   => 'Finalisasi Proyek, Security Testing, dan Dokumentasi',
+        'file'    => 'Komputasi Awan - Pertemuan 15.pptx',
+        'tanggal' => '2026-12-28',
+    ],
+];
+
+$pptDir = __DIR__ . '/../PPT Materi Komputasi Awan';
+$uploadsDir = config('paths.uploads');
+if (!is_dir($uploadsDir)) {
+    mkdir($uploadsDir, 0755, true);
+}
+
+foreach ($materiList as $nomor => $data) {
+    $srcFile = $pptDir . '/' . $data['file'];
+    $fileMateriJson = null;
+
+    if (file_exists($srcFile)) {
+        $destFileName = "materi_S5_p{$nomor}_Komputasi_Awan_" . sprintf("%02d", $nomor) . ".pptx";
+        $destPath = $uploadsDir . '/' . $destFileName;
+        @copy($srcFile, $destPath);
+        $fileMateriJson = json_encode([$destFileName], JSON_UNESCAPED_UNICODE);
+    }
+
+    $checkP = $db->prepare("SELECT id FROM pertemuan WHERE kelas = 'S5' AND nomor = :nomor LIMIT 1");
+    $checkP->execute([':nomor' => $nomor]);
+    $existingP = $checkP->fetch();
+
+    if ($existingP) {
+        $upP = $db->prepare(
+            "UPDATE pertemuan 
+             SET topik = :topik, mata_kuliah = 'Komputasi Awan', tanggal = :tanggal, file_materi = :file_materi 
+             WHERE id = :id"
+        );
+        $upP->execute([
+            ':topik'       => $data['topik'],
+            ':tanggal'     => $data['tanggal'],
+            ':file_materi' => $fileMateriJson,
+            ':id'          => $existingP['id']
+        ]);
+        echo "✅ Pertemuan {$nomor} diperbarui: {$data['topik']}" . PHP_EOL;
+    } else {
+        $inP = $db->prepare(
+            "INSERT INTO pertemuan (kelas, mata_kuliah, nomor, topik, tanggal, file_materi) 
+             VALUES ('S5', 'Komputasi Awan', :nomor, :topik, :tanggal, :file_materi)"
+        );
+        $inP->execute([
+            ':nomor'       => $nomor,
+            ':topik'       => $data['topik'],
+            ':tanggal'     => $data['tanggal'],
+            ':file_materi' => $fileMateriJson
+        ]);
+        echo "✅ Pertemuan {$nomor} ditambahkan: {$data['topik']}" . PHP_EOL;
+    }
 }

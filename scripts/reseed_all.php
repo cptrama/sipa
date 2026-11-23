@@ -158,6 +158,98 @@ if (file_exists($csvFile)) {
     echo "⚠️ File mahasiswa.csv tidak ditemukan.\n";
 }
 
+// 6. Seed Pertemuan & Materi PPT Komputasi Awan
+$materiList = [
+    4 => [
+        'topik'   => 'Virtual Machine, Container, dan Jaringan Virtual',
+        'file'    => 'Komputasi Awan - Pertemuan 04.pptx',
+        'tanggal' => '2026-10-12',
+    ],
+    5 => [
+        'topik'   => 'Cloud Security: CIA Triad, Ancaman, dan Kerentanan',
+        'file'    => 'Komputasi Awan - Pertemuan 05.pptx',
+        'tanggal' => '2026-10-19',
+    ],
+    6 => [
+        'topik'   => 'Komunikasi Aman: TLS/SSL, HTTPS, dan Firewall',
+        'file'    => 'Komputasi Awan - Pertemuan 06.pptx',
+        'tanggal' => '2026-10-26',
+    ],
+    7 => [
+        'topik'   => 'Enkripsi, Hashing, dan Key Management',
+        'file'    => 'Komputasi Awan - Pertemuan 07.pptx',
+        'tanggal' => '2026-11-02',
+    ],
+    9 => [
+        'topik'   => 'IAM: Kontrol Akses dan Autentikasi',
+        'file'    => 'Komputasi Awan - Pertemuan 09.pptx',
+        'tanggal' => '2026-11-16',
+    ],
+    10 => [
+        'topik'   => 'Implementasi IAM: Role, Policy, dan MFA',
+        'file'    => 'Komputasi Awan - Pertemuan 10.pptx',
+        'tanggal' => '2026-11-23',
+    ],
+    11 => [
+        'topik'   => 'Sertifikat Digital, CA, dan PKI',
+        'file'    => 'Komputasi Awan - Pertemuan 11.pptx',
+        'tanggal' => '2026-11-30',
+    ],
+    12 => [
+        'topik'   => 'Certificate Lifecycle Management',
+        'file'    => 'Komputasi Awan - Pertemuan 12.pptx',
+        'tanggal' => '2026-12-07',
+    ],
+    13 => [
+        'topik'   => 'Security Policy, Availability, dan Disaster Recovery',
+        'file'    => 'Komputasi Awan - Pertemuan 13.pptx',
+        'tanggal' => '2026-12-14',
+    ],
+    14 => [
+        'topik'   => 'Implementasi Keamanan Cloud Terintegrasi',
+        'file'    => 'Komputasi Awan - Pertemuan 14.pptx',
+        'tanggal' => '2026-12-21',
+    ],
+    15 => [
+        'topik'   => 'Finalisasi Proyek, Security Testing, dan Dokumentasi',
+        'file'    => 'Komputasi Awan - Pertemuan 15.pptx',
+        'tanggal' => '2026-12-28',
+    ],
+];
+
+$pptDir = __DIR__ . '/../PPT Materi Komputasi Awan';
+$uploadsDir = config('paths.uploads');
+if (!is_dir($uploadsDir)) {
+    mkdir($uploadsDir, 0755, true);
+}
+
+$pertemuanStmt = $db->prepare(
+    "INSERT INTO pertemuan (kelas, mata_kuliah, nomor, topik, tanggal, file_materi) 
+     VALUES ('S5', 'Komputasi Awan', :nomor, :topik, :tanggal, :file_materi)"
+);
+
+$pertemuanCount = 0;
+foreach ($materiList as $nomor => $data) {
+    $srcFile = $pptDir . '/' . $data['file'];
+    $fileMateriJson = null;
+
+    if (file_exists($srcFile)) {
+        $destFileName = "materi_S5_p{$nomor}_Komputasi_Awan_" . sprintf("%02d", $nomor) . ".pptx";
+        $destPath = $uploadsDir . '/' . $destFileName;
+        @copy($srcFile, $destPath);
+        $fileMateriJson = json_encode([$destFileName], JSON_UNESCAPED_UNICODE);
+    }
+
+    $pertemuanStmt->execute([
+        ':nomor'       => $nomor,
+        ':topik'       => $data['topik'],
+        ':tanggal'     => $data['tanggal'],
+        ':file_materi' => $fileMateriJson
+    ]);
+    $pertemuanCount++;
+}
+echo "✅ {$pertemuanCount} Materi Pertemuan berhasil di-seed beserta berkas PPTX.\n";
+
 echo "\n=====================================================\n";
 echo "🎉 SEEDING SELESAI!\n";
 echo "   - Tabel pertemuan, tugas, dan pengumpulan telah KOSONG BERSIH.\n";
