@@ -93,7 +93,7 @@
                             <?php foreach ($tasks as $task): ?>
                                 <div class="mobile-card-item">
                                     <div class="item-header">
-                                        <span class="badge bg-primary">Pertemuan <?= e($task['pertemuan_nomor']) ?></span>
+                                        <span class="badge bg-primary px-2.5 py-1 fw-bold"><?= e($task['pertemuan_nomor']) ?></span>
                                         <?= get_task_status_badge($task['status']) ?>
                                     </div>
 
@@ -134,7 +134,7 @@
                             <table class="table table-hover align-middle mb-0">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="ps-3" style="width: 130px;">Pertemuan</th>
+                                        <th scope="col" class="ps-3 text-center" style="width: 70px;">Pertemuan</th>
                                         <th scope="col">Judul Tugas</th>
                                         <th scope="col" class="text-center" style="width: 120px;">Status</th>
                                         <th scope="col" style="width: 180px;">Batas Waktu</th>
@@ -147,8 +147,8 @@
                                 <tbody>
                                     <?php foreach ($tasks as $task): ?>
                                         <tr>
-                                            <td class="ps-3">
-                                                <span class="badge bg-primary">Pertemuan <?= e($task['pertemuan_nomor']) ?></span>
+                                            <td class="ps-3 text-center">
+                                                <span class="badge bg-primary fs-3 px-2.5 py-1 fw-bold"><?= e($task['pertemuan_nomor']) ?></span>
                                             </td>
                                             <td>
                                                 <div class="fw-bold"><?= e($task['judul']) ?></div>
