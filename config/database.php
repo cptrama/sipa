@@ -29,7 +29,11 @@ function get_db(): PDO {
     
     // Enable SQLite foreign keys & WAL mode for high performance and reliability
     $pdo->exec('PRAGMA foreign_keys = ON;');
-    $pdo->exec('PRAGMA journal_mode = WAL;');
+    try {
+        $pdo->exec('PRAGMA journal_mode = WAL;');
+    } catch (\Throwable $e) {
+        // Safe fallback on Windows if another process currently holds a file lock
+    }
     
     if ($isNewDb) {
         $schemaPath = __DIR__ . '/../database/schema.sql';

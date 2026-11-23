@@ -53,7 +53,7 @@
         <div class="d-flex align-items-center gap-2">
             <i class="ti ti-info-circle text-primary fs-2 flex-shrink-0"></i>
             <div style="line-height: 1.35;">
-                Mahasiswa login pertama kali menggunakan <strong>NIM</strong> sebagai password default.
+                Password akun mahasiswa menggunakan format <strong>Nama@123</strong> (Contoh: <code>Rama@123</code>).
             </div>
         </div>
     </div>

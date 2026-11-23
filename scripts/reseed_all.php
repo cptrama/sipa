@@ -108,13 +108,31 @@ foreach ($dosenList as $d) {
 $csvFile = __DIR__ . '/mahasiswa.csv';
 $mhsCount = 0;
 
+$studentPasswords = [
+    '11203362410118' => 'Alberto@123',
+    '11203362410119' => 'Riefky@123',
+    '11203362410120' => 'Dewi@123',
+    '11203362410121' => 'Fatimah@123',
+    '11203362410122' => 'Maria@123',
+    '11203362410123' => 'Marliana@123',
+    '11203362410125' => 'Hariri@123',
+    '11203362410126' => 'Kaffin@123',
+    '11203362410127' => 'Luhtfi@123',
+    '11203362410128' => 'Nurul@123',
+    '11203362410129' => 'Risna@123',
+    '11203362410131' => 'Salwa@123',
+    '11203362410132' => 'Suraya@123',
+    '11203362410133' => 'Rama@123',
+    '11203362410134' => 'Zaini@123',
+];
+
 if (file_exists($csvFile)) {
     $handle = fopen($csvFile, 'r');
     fgetcsv($handle); // skip header
     
     $mhsInsertStmt = $db->prepare(
         "INSERT INTO users (nim, nama, kelas, role, password_hash, foto, wajib_ganti_password) 
-         VALUES (:nim, :nama, :kelas, 'mahasiswa', :hash, NULL, 1)"
+         VALUES (:nim, :nama, :kelas, 'mahasiswa', :hash, NULL, 0)"
     );
 
     while (($row = fgetcsv($handle)) !== false) {
@@ -122,7 +140,9 @@ if (file_exists($csvFile)) {
         $nim = trim($row[0]);
         $nama = trim($row[1]);
         $kelas = strtoupper(trim($row[2]));
-        $hash = password_hash($nim, PASSWORD_BCRYPT);
+        
+        $plainPassword = $studentPasswords[$nim] ?? ($nim . '@123');
+        $hash = password_hash($plainPassword, PASSWORD_BCRYPT);
 
         $mhsInsertStmt->execute([
             ':nim'   => $nim,
@@ -133,7 +153,7 @@ if (file_exists($csvFile)) {
         $mhsCount++;
     }
     fclose($handle);
-    echo "✅ {$mhsCount} Akun Mahasiswa Kelas S5 berhasil di-seed (Password default = NIM masing-masing).\n";
+    echo "✅ {$mhsCount} Akun Mahasiswa Kelas S5 berhasil di-seed (Password = Nama@123).\n";
 } else {
     echo "⚠️ File mahasiswa.csv tidak ditemukan.\n";
 }

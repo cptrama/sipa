@@ -58,17 +58,35 @@ foreach ($dosenList as $d) {
     }
 }
 
-// Reset & Seed Mahasiswa S5 from mahasiswa.csv
+// Reset & Seed Mahasiswa S5 from mahasiswa.csv with Nama@123 passwords
 $csvFile = __DIR__ . '/mahasiswa.csv';
 if (file_exists($csvFile)) {
     $db->exec("DELETE FROM users WHERE role = 'mahasiswa';");
     echo "🗑️ Seluruh data mahasiswa lama telah dihapus." . PHP_EOL;
 
+    $studentPasswords = [
+        '11203362410118' => 'Alberto@123',
+        '11203362410119' => 'Riefky@123',
+        '11203362410120' => 'Dewi@123',
+        '11203362410121' => 'Fatimah@123',
+        '11203362410122' => 'Maria@123',
+        '11203362410123' => 'Marliana@123',
+        '11203362410125' => 'Hariri@123',
+        '11203362410126' => 'Kaffin@123',
+        '11203362410127' => 'Luhtfi@123',
+        '11203362410128' => 'Nurul@123',
+        '11203362410129' => 'Risna@123',
+        '11203362410131' => 'Salwa@123',
+        '11203362410132' => 'Suraya@123',
+        '11203362410133' => 'Rama@123',
+        '11203362410134' => 'Zaini@123',
+    ];
+
     $handle = fopen($csvFile, 'r');
     fgetcsv($handle); // skip header
     $mhsInsertStmt = $db->prepare(
         "INSERT INTO users (nim, nama, kelas, role, password_hash, foto, wajib_ganti_password) 
-         VALUES (:nim, :nama, :kelas, 'mahasiswa', :hash, NULL, 1)"
+         VALUES (:nim, :nama, :kelas, 'mahasiswa', :hash, NULL, 0)"
     );
 
     $mhsCount = 0;
@@ -77,7 +95,9 @@ if (file_exists($csvFile)) {
         $nim = trim($row[0]);
         $nama = trim($row[1]);
         $kelas = strtoupper(trim($row[2]));
-        $hash = password_hash($nim, PASSWORD_BCRYPT);
+        
+        $plainPassword = $studentPasswords[$nim] ?? ($nim . '@123');
+        $hash = password_hash($plainPassword, PASSWORD_BCRYPT);
 
         $mhsInsertStmt->execute([
             ':nim'   => $nim,
@@ -88,5 +108,5 @@ if (file_exists($csvFile)) {
         $mhsCount++;
     }
     fclose($handle);
-    echo "✅ {$mhsCount} Akun Mahasiswa baru Kelas S5 berhasil di-seed (Password default = NIM)." . PHP_EOL;
+    echo "✅ {$mhsCount} Akun Mahasiswa baru Kelas S5 berhasil di-seed (Password = Nama@123, wajib_ganti_password = 0)." . PHP_EOL;
 }
