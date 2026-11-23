@@ -73,12 +73,6 @@
                                             <i class="ti ti-users"></i>
                                             <span>Periksa (<?= (int)$t['total_kumpul'] ?>)</span>
                                         </a>
-                                        <?php if ((int)$t['total_kumpul'] > 0): ?>
-                                            <a href="/dosen/tugas/<?= e($t['id']) ?>/download-zip" class="btn btn-table-action-success w-100 text-center py-1.5" title="Unduh seluruh submission sebagai ZIP">
-                                                <i class="ti ti-file-zip"></i>
-                                                <span>Unduh ZIP</span>
-                                            </a>
-                                        <?php endif; ?>
                                         <div class="d-flex gap-1.5 w-100">
                                             <a href="/dosen/tugas/<?= e($t['id']) ?>/edit" class="btn btn-table-action-secondary flex-fill text-center py-1.5" title="Edit Tugas">
                                                 <i class="ti ti-edit"></i>
@@ -105,7 +99,7 @@
                                         <th scope="col">Judul Tugas</th>
                                         <th scope="col" class="text-center" style="width: 110px;">Status</th>
                                         <th scope="col" style="width: 190px;">Jendela Pengumpulan</th>
-                                        <th scope="col" class="text-center pe-3 pe-md-4" style="width: 170px;">Aksi</th>
+                                        <th scope="col" class="text-center pe-3 pe-md-4" style="width: 140px;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -134,30 +128,19 @@
                                                 </div>
                                             </td>
                                             <td class="text-center pe-3 pe-md-4">
-                                                <div class="d-inline-flex flex-column gap-1.5 align-items-center" style="width: 160px;">
+                                                <div class="d-inline-flex flex-column gap-1.5 align-items-center" style="width: 130px;">
                                                     <a href="/dosen/tugas/<?= e($t['id']) ?>/pengumpulan" class="btn btn-table-action-primary w-100 py-1" title="Lihat daftar pengumpulan">
                                                         <i class="ti ti-users"></i>
                                                         <span>Periksa (<?= (int)$t['total_kumpul'] ?>)</span>
                                                     </a>
                                                     <div class="d-flex gap-1 w-100">
-                                                        <?php if ((int)$t['total_kumpul'] > 0): ?>
-                                                            <a href="/dosen/tugas/<?= e($t['id']) ?>/download-zip" class="btn btn-table-action-success flex-fill py-1 px-1 text-nowrap" title="Unduh seluruh submission sebagai ZIP">
-                                                                <i class="ti ti-file-zip"></i>
-                                                                <span style="font-size: 0.74rem;">ZIP</span>
-                                                            </a>
-                                                        <?php else: ?>
-                                                            <button type="button" class="btn btn-table-action-secondary flex-fill py-1 px-1 opacity-50 text-nowrap" disabled title="Belum ada submission untuk diunduh">
-                                                                <i class="ti ti-file-zip"></i>
-                                                                <span style="font-size: 0.74rem;">ZIP</span>
-                                                            </button>
-                                                        <?php endif; ?>
-                                                        <a href="/dosen/tugas/<?= e($t['id']) ?>/edit" class="btn btn-table-action-secondary flex-fill py-1 px-1 text-nowrap" title="Edit Tugas">
+                                                        <a href="/dosen/tugas/<?= e($t['id']) ?>/edit" class="btn btn-table-action-secondary flex-fill py-1 px-1.5 text-nowrap" title="Edit Tugas">
                                                             <i class="ti ti-edit"></i>
-                                                            <span style="font-size: 0.74rem;">Edit</span>
+                                                            <span style="font-size: 0.78rem;">Edit</span>
                                                         </a>
-                                                        <button type="button" class="btn btn-table-action-danger flex-fill py-1 px-1 text-nowrap" data-bs-toggle="modal" data-bs-target="#deleteTugasModal<?= e($t['id']) ?>" title="Hapus Tugas">
+                                                        <button type="button" class="btn btn-table-action-danger flex-fill py-1 px-1.5 text-nowrap" data-bs-toggle="modal" data-bs-target="#deleteTugasModal<?= e($t['id']) ?>" title="Hapus Tugas">
                                                             <i class="ti ti-trash"></i>
-                                                            <span style="font-size: 0.74rem;">Hapus</span>
+                                                            <span style="font-size: 0.78rem;">Hapus</span>
                                                         </button>
                                                     </div>
                                                 </div>
