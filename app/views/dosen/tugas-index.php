@@ -99,7 +99,7 @@
                                         <th scope="col">Judul Tugas</th>
                                         <th scope="col" class="text-center" style="width: 110px;">Status</th>
                                         <th scope="col" style="width: 180px;">Jendela Pengumpulan</th>
-                                        <th scope="col" class="text-center pe-3 pe-md-4" style="width: 180px;">Aksi</th>
+                                        <th scope="col" class="text-center pe-3 pe-md-4" style="width: 195px;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -128,7 +128,7 @@
                                                 </div>
                                             </td>
                                             <td class="text-center pe-3 pe-md-4">
-                                                <div class="d-inline-flex flex-column gap-1.5 align-items-center" style="width: 145px;">
+                                                <div class="d-inline-flex flex-column gap-1.5" style="width: 160px;">
                                                     <a href="/dosen/tugas/<?= e($t['id']) ?>/pengumpulan" class="btn btn-table-action-primary w-100 py-1" title="Lihat daftar pengumpulan">
                                                         <i class="ti ti-users"></i>
                                                         <span>Periksa (<?= (int)$t['total_kumpul'] ?>)</span>
