@@ -250,6 +250,9 @@ foreach ($materiList as $nomor => $data) {
 }
 echo "✅ {$pertemuanCount} Materi Pertemuan berhasil di-seed beserta berkas PPTX.\n";
 
+// 7. Seed Tugas & Simulasi Pengumpulan Tugas Mahasiswa
+require_once __DIR__ . '/seed_tugas_pengumpulan.php';
+
 echo "\n=====================================================\n";
 echo "🎉 SEEDING SELESAI!\n";
 echo "   - Tabel pertemuan, tugas, dan pengumpulan telah KOSONG BERSIH.\n";

@@ -219,3 +219,6 @@ foreach ($materiList as $nomor => $data) {
         echo "✅ Pertemuan {$nomor} ditambahkan: {$data['topik']}" . PHP_EOL;
     }
 }
+
+// Synchronize Tugas & Simulasi Pengumpulan Tugas Mahasiswa
+require_once __DIR__ . '/seed_tugas_pengumpulan.php';
