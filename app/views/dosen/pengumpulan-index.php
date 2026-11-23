@@ -158,18 +158,25 @@
 
                 <!-- Desktop Table View (d-none d-md-block) -->
                 <div class="d-none d-md-block">
+                    <style>
+                        .table.table-pengumpulan th,
+                        .table.table-pengumpulan td {
+                            padding-left: 0.55rem !important;
+                            padding-right: 0.55rem !important;
+                        }
+                    </style>
                     <div class="table-responsive" style="overflow-x: hidden;">
-                        <table class="table table-hover align-middle mb-0 w-100">
+                        <table class="table table-pengumpulan table-hover align-middle mb-0 w-100">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="text-center" style="width: 125px;">NIM</th>
+                                    <th scope="col" class="text-center" style="width: 110px;">NIM</th>
                                     <th scope="col">Nama Mahasiswa</th>
-                                    <th scope="col" class="text-center" style="width: 85px;">Status</th>
-                                    <th scope="col" class="text-center" style="width: 110px;">Waktu Upload</th>
-                                    <th scope="col" class="text-center" style="width: 135px;">File Berkas</th>
-                                    <th scope="col" class="text-center" style="width: 75px;">Nilai</th>
-                                    <th scope="col" style="width: 110px;">Feedback</th>
-                                    <th scope="col" class="text-center pe-3" style="width: 105px;">Aksi</th>
+                                    <th scope="col" class="text-center" style="width: 75px;">Status</th>
+                                    <th scope="col" class="text-center" style="width: 95px;">Waktu Upload</th>
+                                    <th scope="col" class="text-center" style="width: 115px;">File Berkas</th>
+                                    <th scope="col" class="text-center" style="width: 65px;">Nilai</th>
+                                    <th scope="col" style="width: 95px;">Feedback</th>
+                                    <th scope="col" class="text-center pe-3" style="width: 90px;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -183,7 +190,7 @@
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
                                                 <?= render_avatar($sub, 26) ?>
-                                                <div class="fw-bold text-dark text-truncate" style="max-width: 175px;" title="<?= e($sub['nama']) ?>"><?= e($sub['nama']) ?></div>
+                                                <div class="fw-bold text-dark text-truncate" style="max-width: 145px;" title="<?= e($sub['nama']) ?>"><?= e($sub['nama']) ?></div>
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -210,8 +217,8 @@
                                         <td class="text-center">
                                             <?php if (!empty($sub['pengumpulan_id'])): ?>
                                                 <a href="/dosen/pengumpulan/<?= e($sub['pengumpulan_id']) ?>/download" 
-                                                   class="btn btn-table-action-secondary py-1 px-2 d-inline-flex align-items-center gap-1 text-truncate" 
-                                                   style="max-width: 125px; font-size: 0.78rem;" 
+                                                   class="btn btn-table-action-secondary py-1 px-1.5 d-inline-flex align-items-center gap-1 text-truncate" 
+                                                   style="max-width: 110px; font-size: 0.76rem;" 
                                                    title="Unduh <?= e($sub['file_asli']) ?>">
                                                     <i class="ti ti-file-download text-primary flex-shrink-0"></i>
                                                     <span class="text-truncate"><?= e($sub['file_asli']) ?></span>
@@ -226,8 +233,9 @@
                                                     <?= number_format((float)$sub['nilai'], 1) ?>
                                                 </span>
                                             <?php elseif (!empty($sub['pengumpulan_id'])): ?>
-                                                <span class="badge bg-warning-lt text-warning fw-semibold px-1.5 py-0.5 text-nowrap" style="font-size: 0.72rem;">
-                                                    Belum dinilai
+                                                <span class="badge bg-warning-lt text-warning fw-semibold px-1.5 py-0.5 d-inline-flex flex-column align-items-center text-nowrap" style="font-size: 0.70rem; line-height: 1.15;">
+                                                    <span>Belum</span>
+                                                    <span>dinilai</span>
                                                 </span>
                                             <?php else: ?>
                                                 <span class="text-secondary small">-</span>
@@ -235,7 +243,7 @@
                                         </td>
                                         <td>
                                             <?php if (!empty($sub['feedback'])): ?>
-                                                <span class="small text-dark text-truncate d-inline-block" style="max-width: 100px;" title="<?= e($sub['feedback']) ?>">
+                                                <span class="small text-dark text-truncate d-inline-block" style="max-width: 85px;" title="<?= e($sub['feedback']) ?>">
                                                     <i class="ti ti-message-dots text-primary me-0.5"></i><?= e($sub['feedback']) ?>
                                                 </span>
                                             <?php else: ?>
