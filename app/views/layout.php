@@ -292,8 +292,11 @@
                 if (stripos($rf['message'], 'akses ditolak') !== false) {
                     $modalTitle = 'Akses Ditolak';
                     break;
-                } elseif (stripos($rf['message'], 'gagal') !== false || stripos($rf['message'], 'salah') !== false || stripos($rf['message'], 'ditolak') !== false) {
-                    $modalTitle = 'Validasi Gagal';
+                } elseif (stripos($rf['message'], 'login') !== false || stripos($rf['message'], 'nim') !== false || stripos($rf['message'], 'password') !== false || stripos($rf['message'], 'salah') !== false) {
+                    $modalTitle = 'Login Gagal';
+                    break;
+                } elseif (stripos($rf['message'], 'gagal') !== false || stripos($rf['message'], 'ditolak') !== false) {
+                    $modalTitle = 'Login Gagal';
                     break;
                 }
             }
