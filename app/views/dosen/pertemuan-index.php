@@ -45,7 +45,7 @@
                             <?php foreach ($pertemuanList as $p): ?>
                                 <div class="mobile-card-item">
                                     <div class="item-header">
-                                        <span class="badge bg-primary">Pertemuan <?= e($p['nomor']) ?></span>
+                                        <span class="badge bg-primary px-2.5 py-1 fw-bold"><?= e($p['nomor']) ?></span>
                                         <?php 
                                             $tglTime = strtotime($p['tanggal']);
                                             $tglFmt = $tglTime ? date('d M Y', $tglTime) : $p['tanggal'];
@@ -109,7 +109,7 @@
                             <table class="table table-hover align-middle mb-0">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="ps-3 ps-md-4" style="width: 130px;">Pertemuan</th>
+                                        <th scope="col" class="ps-3 ps-md-4 text-center" style="width: 70px;">Pertemuan</th>
                                         <th scope="col" style="width: 150px;">Mata Kuliah</th>
                                         <th scope="col">Topik Pertemuan</th>
                                         <th scope="col" class="text-center" style="width: 140px;">Tanggal</th>
@@ -121,8 +121,8 @@
                                 <tbody>
                                     <?php foreach ($pertemuanList as $p): ?>
                                         <tr>
-                                            <td class="ps-3 ps-md-4">
-                                                <span class="badge bg-primary">Pertemuan <?= e($p['nomor']) ?></span>
+                                            <td class="ps-3 ps-md-4 text-center">
+                                                <span class="badge bg-primary fs-3 px-2.5 py-1 fw-bold"><?= e($p['nomor']) ?></span>
                                             </td>
                                             <td>
                                                 <?= !empty($p['mata_kuliah']) ? '<span class="text-dark">' . e($p['mata_kuliah']) . '</span>' : '<span class="text-secondary">-</span>' ?>
