@@ -117,57 +117,57 @@ $materiList = [
     4 => [
         'topik'   => 'Virtual Machine, Container, dan Jaringan Virtual',
         'file'    => 'Komputasi Awan - Pertemuan 04.pptx',
-        'tanggal' => '2026-10-12',
+        'tanggal' => '2026-10-27',
     ],
     5 => [
         'topik'   => 'Cloud Security: CIA Triad, Ancaman, dan Kerentanan',
         'file'    => 'Komputasi Awan - Pertemuan 05.pptx',
-        'tanggal' => '2026-10-19',
+        'tanggal' => '2026-11-03',
     ],
     6 => [
         'topik'   => 'Komunikasi Aman: TLS/SSL, HTTPS, dan Firewall',
         'file'    => 'Komputasi Awan - Pertemuan 06.pptx',
-        'tanggal' => '2026-10-26',
+        'tanggal' => '2026-11-10',
     ],
     7 => [
         'topik'   => 'Enkripsi, Hashing, dan Key Management',
         'file'    => 'Komputasi Awan - Pertemuan 07.pptx',
-        'tanggal' => '2026-11-02',
+        'tanggal' => '2026-11-17',
     ],
     9 => [
         'topik'   => 'IAM: Kontrol Akses dan Autentikasi',
         'file'    => 'Komputasi Awan - Pertemuan 09.pptx',
-        'tanggal' => '2026-11-16',
+        'tanggal' => '2026-12-01',
     ],
     10 => [
         'topik'   => 'Implementasi IAM: Role, Policy, dan MFA',
         'file'    => 'Komputasi Awan - Pertemuan 10.pptx',
-        'tanggal' => '2026-11-23',
+        'tanggal' => '2026-12-08',
     ],
     11 => [
         'topik'   => 'Sertifikat Digital, CA, dan PKI',
         'file'    => 'Komputasi Awan - Pertemuan 11.pptx',
-        'tanggal' => '2026-11-30',
+        'tanggal' => '2026-12-15',
     ],
     12 => [
         'topik'   => 'Certificate Lifecycle Management',
         'file'    => 'Komputasi Awan - Pertemuan 12.pptx',
-        'tanggal' => '2026-12-07',
+        'tanggal' => '2027-01-05',
     ],
     13 => [
         'topik'   => 'Security Policy, Availability, dan Disaster Recovery',
         'file'    => 'Komputasi Awan - Pertemuan 13.pptx',
-        'tanggal' => '2026-12-14',
+        'tanggal' => '2027-01-12',
     ],
     14 => [
         'topik'   => 'Implementasi Keamanan Cloud Terintegrasi',
         'file'    => 'Komputasi Awan - Pertemuan 14.pptx',
-        'tanggal' => '2026-12-21',
+        'tanggal' => '2027-01-19',
     ],
     15 => [
         'topik'   => 'Finalisasi Proyek, Security Testing, dan Dokumentasi',
         'file'    => 'Komputasi Awan - Pertemuan 15.pptx',
-        'tanggal' => '2026-12-28',
+        'tanggal' => '2027-01-26',
     ],
 ];
 
