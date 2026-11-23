@@ -16,7 +16,7 @@ $nama = $argv[2] ?? null;
 $password = $argv[3] ?? null;
 
 if (empty($nim)) {
-    echo "Masukkan NIDN / NIM Dosen: ";
+    echo "Masukkan NIK / NIM Dosen: ";
     $nim = trim((string)fgets(STDIN));
 }
 
@@ -31,7 +31,7 @@ if (empty($password)) {
 }
 
 if (empty($nim) || empty($nama) || empty($password)) {
-    echo "[ERROR] NIDN/NIM, Nama, dan Password tidak boleh kosong.\n";
+    echo "[ERROR] NIK/NIM, Nama, dan Password tidak boleh kosong.\n";
     exit(1);
 }
 
@@ -56,7 +56,7 @@ if ($existing) {
         ':hash' => $passwordHash,
         ':id' => $existing['id']
     ]);
-    echo "[SUKSES] Akun dosen dengan NIM/NIDN {$nim} ({$nama}) berhasil diperbarui.\n";
+    echo "[SUKSES] Akun dosen dengan NIM/NIK {$nim} ({$nama}) berhasil diperbarui.\n";
 } else {
     $inStmt = $db->prepare("INSERT INTO users (nim, nama, kelas, role, password_hash, wajib_ganti_password) VALUES (:nim, :nama, NULL, 'dosen', :hash, 0)");
     $inStmt->execute([
@@ -64,7 +64,7 @@ if ($existing) {
         ':nama' => $nama,
         ':hash' => $passwordHash
     ]);
-    echo "[SUKSES] Akun dosen baru dengan NIM/NIDN {$nim} ({$nama}) berhasil dibuat.\n";
+    echo "[SUKSES] Akun dosen baru dengan NIM/NIK {$nim} ({$nama}) berhasil dibuat.\n";
 }
 
 echo "Role: dosen\nWajib Ganti Password: 0\n";

@@ -16,12 +16,12 @@
             <?= csrf_field() ?>
 
             <div class="mb-3">
-                <label for="nim" class="form-label fw-bold small text-uppercase text-secondary">NIM / NIDN</label>
+                <label for="nim" class="form-label fw-bold small text-uppercase text-secondary">NIM / NIK</label>
                 <div class="input-group">
                     <span class="input-group-text bg-body-tertiary">
                         <i class="ti ti-user fs-2 text-secondary"></i>
                     </span>
-                    <input type="text" class="form-control" id="nim" name="nim" required autofocus placeholder="Masukkan NIM atau NIDN" autocomplete="username">
+                    <input type="text" class="form-control" id="nim" name="nim" required autofocus placeholder="Masukkan NIM atau NIK" autocomplete="username">
                 </div>
             </div>
 

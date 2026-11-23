@@ -45,7 +45,7 @@
                                         <span class="badge bg-warning-lt text-warning border border-warning-subtle fw-bold px-2 py-0.5">Dosen Pengampu</span>
                                     </div>
                                     <div class="text-secondary small d-flex align-items-center gap-2 flex-wrap">
-                                        <span>NIDN / Username: <code class="px-1.5 py-0.5 rounded bg-body border text-body font-monospace"><?= e($user['nim']) ?></code></span>
+                                        <span>NIK / Username: <code class="px-1.5 py-0.5 rounded bg-body border text-body font-monospace"><?= e($user['nim']) ?></code></span>
                                         <span>&bull;</span>
                                         <span>Maksimal <strong>2 MB</strong> &bull; Format: JPG, PNG, atau WebP</span>
                                     </div>
@@ -72,13 +72,13 @@
                     <!-- Identitas Pengguna -->
                     <div class="mb-3">
                         <label for="nim" class="form-label fw-bold small text-uppercase text-secondary">
-                            NIDN / Username Login
+                            NIK / Username Login
                         </label>
                         <div class="input-group">
                             <span class="input-group-text bg-body-tertiary"><i class="ti ti-id fs-2 text-secondary"></i></span>
                             <input type="text" class="form-control bg-body-tertiary font-monospace" id="nim" value="<?= e($user['nim']) ?>" readonly disabled style="cursor: not-allowed;">
                         </div>
-                        <div class="form-text small text-secondary mt-1">NIDN digunakan sebagai ID login akun resmi dan tidak dapat diubah.</div>
+                        <div class="form-text small text-secondary mt-1">NIK digunakan sebagai ID login akun resmi dan tidak dapat diubah.</div>
                     </div>
 
                     <div class="mb-4">

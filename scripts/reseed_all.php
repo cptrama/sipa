@@ -81,6 +81,11 @@ $dosenList = [
         'nim'  => '1166082022231',
         'nama' => 'Fajar Ramadhan, M.Kom',
         'pass' => 'admin123'
+    ],
+    [
+        'nim'  => '1166052017097',
+        'nama' => 'Muhammad Zulfadhilah, M.Kom',
+        'pass' => 'Zul@12345'
     ]
 ];
 
