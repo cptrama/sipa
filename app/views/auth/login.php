@@ -60,8 +60,8 @@
 </div>
 
 <div class="text-center text-secondary small mt-4">
-    <div><?= e(config('app_name')) ?> &copy; <?= date('Y') ?> &bull; Universitas Sari Mulia</div>
-    <div class="mt-1">Program Studi <?= e(config('prodi')) ?></div>
+    <div><?= e(config('app_name')) ?> &copy; <?= date('Y') ?></div>
+    <div class="mt-1">Universitas Sari Mulia</div>
 </div>
 
 <script>
